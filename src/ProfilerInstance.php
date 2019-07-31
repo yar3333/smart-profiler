@@ -128,7 +128,7 @@ class ProfilerInstance
 		{
 			$nameParts = explode('-', $name);
 			
-			$name2 = $nameParts[$nameParts->Length - 1];
+			$name2 = $nameParts[count($nameParts) - 1];
 			if (!array_key_exists($name2, $results))
 			{
 				$results[$name2] = new Result($name2, 0.0, 0);
@@ -159,10 +159,10 @@ class ProfilerInstance
 		
 		usort($r, function($a, $b)
         {
-			$ai = $a->name->split('-');
-			$bi = $b->name->split('-');
+			$ai = explode('-', $a->name);
+			$bi = explode('-', $b->name);
 			
-			for ($i=0; $i<min($ai->Length, $bi->Length); $i++)
+			for ($i=0; $i<min(count($ai), count($bi)); $i++)
 			{
 				if ($ai[$i] !== $bi[$i])
 				{

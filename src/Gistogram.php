@@ -12,12 +12,12 @@ class Gistogram
 
 		foreach ($results as $result)
 		{
-			$maxLen = max($maxLen, $result->name->Length);
+			$maxLen = max($maxLen, strlen($result->name));
 			$maxDT = max($maxDT, $result->dt);
 			$maxCount = max($maxCount, $result->count);
 		}
 		
-		$countLen = $maxCount > 1 ? $maxCount->toString()->Length : 0;
+		$countLen = $maxCount > 1 ? strlen($maxCount) : 0;
 		
 		$maxW = $width - $maxLen - $countLen;
 		if ($maxW < 1) $maxW = 1;
