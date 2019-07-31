@@ -1,0 +1,16 @@
+language: php
+
+php:
+  - 7.1
+  - 7.2
+
+before_script:
+  - composer install --no-interaction
+
+script:
+  - vendor/bin/phpunit --coverage-clover=coverage.clover
+  - vendor/bin/phpcs --standard=PSR2 ./src/
+
+# Use Travis' new container-based infrastructure.
+# See http://docs.travis-ci.com/user/migrating-from-legacy/#How-can-I-use-container-based-infrastructure%3F
+sudo: false

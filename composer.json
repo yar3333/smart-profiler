@@ -1,0 +1,30 @@
+{
+    "name": "smart-profiler/smart-profiler",
+    "description": "Profiler for PHP 7.1+",
+    "license": "MIT",
+    "type": "library",
+    "keywords": ["profiler", "profiling"],
+    "authors": [
+        {
+            "name": "Yaroslav Sivakov",
+            "email": "yar3333@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.0",
+        "squizlabs/php_codesniffer": "^2.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "SmartProfiler\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SmartProfilerTests\\": "tests"
+        }
+    }
+}
