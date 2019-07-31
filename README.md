@@ -33,18 +33,18 @@ Output:
 ```
 Results:
 3003 | MainSection
-2001 |     SubSection```
+2001 |     SubSection
 ```
 Numbers like `3003` means 3.003 seconds.
 
-## Direct call begin/end
+## Measuring via begin() / end()
 ```php
 Profiler::begin("myCodeA");
 // code to measure duration
 Profiler::end();
 ```
 
-## Measure via callable
+## Measuring via measure()
 ```php
 Profiler::measure("myCodeA", null, function()
 {
