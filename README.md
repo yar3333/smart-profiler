@@ -20,9 +20,9 @@ use SmartProfiler\Profiler;
 Profiler::reset(10); // specify max nesting level!
 
 Profiler::begin("MainSection");
-sleep(1);
+    sleep(1);
     Profiler::begin("SubSection");
-    sleep(2);
+        sleep(2);
     Profiler::end();
 Profiler::end();
 
