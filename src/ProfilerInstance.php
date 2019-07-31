@@ -138,7 +138,7 @@ class ProfilerInstance
 		}
 		
 		$r = array_values($results);
-		usort($r, function($a, $b) { return $a->dt - $b->dt; });
+		usort($r, function($a, $b) { return $a->dt < $b->dt ? 1 : ($a->dt > $b->dt ? -1 : 0); });
 		return $r;
 	}
 	
