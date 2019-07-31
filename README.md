@@ -12,11 +12,65 @@ composer require "smart-profiler/smart-profiler"
 ```
 
 ## Using
-
 ```php
 <?php
 
 use SmartProfiler\Profiler;
 
+Profiler::reset(10); // specify max nesting level!
 
+Profiler::begin("MainSection");
+sleep(1);
+    Profiler::begin("SubSection");
+    sleep(2);
+    Profiler::end();
+Profiler::end();
+
+echo "Results:\n" . Profiler::getCallStackResultsAsText();
+```
+
+Output:
+```
+Results:
+3003 | MainSection
+2001 |     SubSection```
+```
+Numbers like `3003` means 3.003 seconds.
+
+## Direct call begin/end
+```php
+Profiler::begin("myCodeA");
+// code to measure duration
+Profiler::end();
+```
+
+## Measure via callable
+```php
+Profiler::measure("myCodeA", null, function()
+{
+    // code to measure duration
+});
+
+$result = Profiler::measure("myCodeB", null, function()
+{
+    // code to measure duration
+    return "abc"; // result
+});
+```
+
+## Getting collected data ##
+```php
+// print summary
+Profiler::traceResults();
+
+// get all calls as flat array
+$results = Profiler::getCallStackResults();
+
+// get all calls as tree
+$callTree = Profiler::getCallStack();
+// it is very useful to generate human-readable json from this
+echo json_encode([ 'name' => 'myApp', 'stack' => $callTree ]);
+
+// or just use next
+echo Profiler::getCallStackResultsAsText();
 ```
