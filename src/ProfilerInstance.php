@@ -39,8 +39,8 @@ class ProfilerInstance
 			$this->callTree->children[] = $subCallTree;
 			$this->callTree = $subCallTree;
 		}
-		
-		if (count($this->opened) > 0)
+
+		if ($this->opened)
 		{
 			$name = $this->opened[count($this->opened) - 1]->name . '-' . $name;
 		}
@@ -51,7 +51,7 @@ class ProfilerInstance
 	{
 		if ($this->maxNestingLevel <= 0) return;
 
-		if (count($this->opened) === 0)
+		if (!$this->opened)
 		{
 			throw new \Exception("Profiler::end() called but there are no open blocks.");
 		}
@@ -127,7 +127,7 @@ class ProfilerInstance
 		foreach ($this->blocks as $name => $block)
 		{
 			$nameParts = explode('-', $name);
-			
+
 			$name2 = $nameParts[count($nameParts) - 1];
 			if (!array_key_exists($name2, $results))
 			{
